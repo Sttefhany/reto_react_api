@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { User, LogOut, X, LogIn, Mail, AlertTriangle } from "lucide-react";
 import { useAuth } from "./AuthContext";
+import { useCart } from "./CartContext"; // <-- 1. IMPORTAR USECART
 
 export default function Login() {
   const { usuario, login, logout } = useAuth();
-  
+  const { vaciarCarrito } = useCart(); // <-- 2. OBTENER VACIARCARRITO
+
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const [isProfileModalOpen, setIsProfileModalOpen] = useState(false);
   const [isConfirmLogoutOpen, setIsConfirmLogoutOpen] = useState(false);
@@ -27,10 +29,12 @@ export default function Login() {
 
   const handleConfirmLogout = () => {
     logout();
+    vaciarCarrito(); // <-- 3. VACIAR EL CARRITO AL CERRAR SESIÓN
     setIsConfirmLogoutOpen(false);
     setIsProfileModalOpen(false);
   };
 
+  // ... (resto de tu componente Login.jsx queda exactamente igual)
   if (usuario) {
     return (
       <>

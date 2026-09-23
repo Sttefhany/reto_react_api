@@ -5,7 +5,7 @@ import toast from "react-hot-toast";
 import { contactoSchema } from "./contactoSchema";
 
 import FormInput from "./Componentes/Forminput";
-import FormSelect from "./Componentes/Formselect";
+import FormSelect from "./Componentes/FormSelect";
 import FormTextArea from "./Componentes/FormTextArea";
 import FormFile from "./Componentes/FormFile";
 

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { User, LogOut, X, LogIn, Mail, AlertTriangle } from "lucide-react";
 import { useAuth } from "./AuthContext";
-import { useCart } from "./CartContext"; // <-- 1. IMPORTAR USECART
+import { useCart } from "../CartContext"; // para subir un nivel de carpeta
 
 export default function Login() {
   const { usuario, login, logout } = useAuth();

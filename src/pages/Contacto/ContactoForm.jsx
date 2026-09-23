@@ -9,7 +9,7 @@ import FormSelect from "./Componentes/Formselect";
 import FormTextArea from "./Componentes/FormTextArea";
 import FormFile from "./Componentes/FormFile";
 
-import paises from "./Paises";
+import paises from "./paises";
 import ciudades from "./ciudades";
 
 function ContactoForm() {

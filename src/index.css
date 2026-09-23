@@ -1,0 +1,22 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+@tailwindcss base;
+@tailwindcss components;
+@tailwindcss utilities;
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100vh;
+  background-color: #0f172a;
+  color: #0f172a; /* Cambiado a texto oscuro por defecto */
+  font-family: system-ui, -apple-system, sans-serif;
+  color-scheme: light; /* Fuerza menús desplegables claros */
+}
+
+/* Regla para garantizar que las opciones de todos los select sean legibles */
+select option {
+  background-color: #ffffff;
+  color: #0f172a;
+}

@@ -3,7 +3,7 @@ import { Sun, Moon, ShoppingCart } from "lucide-react";
 import { useTheme } from "../../context/ThemeContext";
 import { useCart } from "../../context/CartContext";
 import Navbar from "./Navbar";
-import Login from "../../Auth/Login";
+
 import "./Layout.css";
 
 // 1. Importa la imagen de tu logo desde assets (ajusta el nombre del archivo si es .png, .svg, etc.)

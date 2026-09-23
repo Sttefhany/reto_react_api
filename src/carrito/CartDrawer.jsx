@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { X, Trash2, ShoppingBag, RotateCcw, PackageCheck } from "lucide-react";
 import { useCart } from "../context/CartContext";
+import { useAuth } from "../Auth/AuthContext";
 
 export default function CartDrawer() {
   const {
@@ -15,11 +16,22 @@ export default function CartDrawer() {
     totalPagar,
   } = useCart();
 
+  const { usuario } = useAuth();
+
   // Estados locales para controlar los modales de confirmación
   const [isConfirmVaciarOpen, setIsConfirmVaciarOpen] = useState(false);
   const [isConfirmPedidoOpen, setIsConfirmPedidoOpen] = useState(false);
 
   if (!isCartOpen) return null;
+
+  // Manejador para validar el clic en "Pagar Pedido"
+  const handleAbrirModalPagar = () => {
+    if (!usuario) {
+      alert("¡Debes iniciar sesión para poder realizar el pago de tu pedido!");
+      return;
+    }
+    setIsConfirmPedidoOpen(true);
+  };
 
   // Manejador para vaciar el carrito
   const handleConfirmarVaciar = () => {
@@ -32,7 +44,6 @@ export default function CartDrawer() {
     vaciarCarrito();
     setIsConfirmPedidoOpen(false);
     toggleCart(); // Cierra el drawer después de pagar
-    ;
   };
 
   // Función de utilidad para formatear la moneda colombiana sin decimales extraños
@@ -161,10 +172,10 @@ export default function CartDrawer() {
                     Vaciar
                   </button>
 
-                  {/* Botón para Abrir Modal de Pagar */}
+                  {/* Botón para Abrir Modal de Pagar con validación */}
                   <button
                     type="button"
-                    onClick={() => setIsConfirmPedidoOpen(true)}
+                    onClick={handleAbrirModalPagar}
                     className="w-2/3 py-2.5 px-4 bg-cyan-600 hover:bg-cyan-500 text-slate-900 font-bold rounded-xl transition-colors text-sm cursor-pointer"
                   >
                     Pagar Pedido

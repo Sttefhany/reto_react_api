@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { User, LogOut, X, LogIn, Mail, AlertTriangle } from "lucide-react";
 import { useAuth } from "./AuthContext";
-import { useCart } from "../CartContext"; // <-- Cambiado a ../ para subir un nivel de carpeta
+import { useCart } from "../CartContext";
 
 export default function Login() {
   const { usuario, login, logout } = useAuth();
@@ -159,7 +159,7 @@ export default function Login() {
               </p>
             </div>
 
-            {/* Formulario en columna bien estructurado */}
+            {/* Formulario */}
             <form onSubmit={handleLoginSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
               
               {/* Campo Nombre */}

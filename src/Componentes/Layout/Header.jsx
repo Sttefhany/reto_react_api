@@ -6,6 +6,9 @@ import Navbar from "./Navbar";
 import Login from "../../Auth/Login";
 import "./Layout.css";
 
+// 1. Importa la imagen de tu logo desde assets (ajusta el nombre del archivo si es .png, .svg, etc.)
+import logoImg from "../../assets/12019-sea-2361247_1920.jpg";
+
 function Header() {
   const { tema, cambiarTema } = useTheme();
   const { totalItems, toggleCart } = useCart();
@@ -13,8 +16,14 @@ function Header() {
   return (
     <header className="header flex items-center justify-between px-6 py-4 bg-slate-100 dark:bg-slate-900 text-slate-900 dark:text-white transition-colors duration-300">
       <div className="logo">
-        <Link to="/">
-          <h2 className="text-xl font-bold">React705</h2>
+        <Link to="/" className="flex items-center gap-2">
+          {/* 2. Imagen del logo con tamaño ajustado */}
+          <img 
+            src={logoImg} 
+            alt="Logo Vida Marina" 
+            className="h-8 w-auto object-contain" 
+          />
+          <h2 className="text-xl font-bold">¡Hostias tias tio!, voy nadando</h2>
         </Link>
       </div>
 

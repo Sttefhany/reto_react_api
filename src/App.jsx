@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "./context/ThemeContext";
 import { CartProvider } from "./context/CartContext";
-import { AuthProvider } from "./Auth/AuthContext"; // 👈 Importante
+import { AuthProvider } from "./Auth/AuthContext"; 
 import Layout from "./Componentes/Layout/Layout";
 import Inicio from "./pages/Inicio";
 import Escenario from "./pages/Escenario/Escenario";
@@ -11,7 +11,7 @@ import Contacto from "./pages/Contacto/Contacto";
 function App() {
   return (
     <ThemeProvider>
-      <AuthProvider> {/* 👈 Envolvemos aquí */}
+      <AuthProvider> 
         <CartProvider>
           <Layout>
             <Routes>

@@ -20,9 +20,9 @@ function Productos() {
   return (
     <section className="bg-slate-50 min-h-screen px-6 py-10">
       <div className="max-w-6xl mx-auto">
-        <h2 className="text-3xl font-bold text-slate-900">Catálogo</h2>
+        <h2 className="text-3xl font-bold text-slate-900">Explora la diversidad del mundo marino</h2>
         <p className="text-slate-500 mt-2">
-          Personajes de Rick and Morty disponibles en la tienda
+          Sumérgete en nuestro catálogo interactivo y descubre una cuidada selección de especies acuáticas. Explora sus detalles taxonómicos, clasificaciones biológicas y características únicas en tiempo real. ¡Encuentra la especie ideal para tu acuario o proyecto hoy mismo!
         </p>
 
         {cargando && (

@@ -32,7 +32,7 @@ export default function CartDrawer() {
     vaciarCarrito();
     setIsConfirmPedidoOpen(false);
     toggleCart(); // Cierra el drawer después de pagar
-    alert("¡Pedido enviado correctamente!");
+    ;
   };
 
   // Función de utilidad para formatear la moneda colombiana sin decimales extraños

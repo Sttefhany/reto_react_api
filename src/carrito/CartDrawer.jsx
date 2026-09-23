@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { X, Trash2, ShoppingBag, RotateCcw, PackageCheck } from "lucide-react";
+import { X, Trash2, ShoppingBag, RotateCcw, PackageCheck, CheckCircle2 } from "lucide-react";
 import { useCart } from "../context/CartContext";
 import { useAuth } from "../Auth/AuthContext";
 
@@ -18,9 +18,10 @@ export default function CartDrawer() {
 
   const { usuario } = useAuth();
 
-  // Estados locales para controlar los modales de confirmación
+  // Estados locales para controlar los modales de confirmación y éxito
   const [isConfirmVaciarOpen, setIsConfirmVaciarOpen] = useState(false);
   const [isConfirmPedidoOpen, setIsConfirmPedidoOpen] = useState(false);
+  const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false);
 
   if (!isCartOpen) return null;
 
@@ -39,14 +40,20 @@ export default function CartDrawer() {
     setIsConfirmVaciarOpen(false);
   };
 
-  // Manejador para enviar/pagar pedido
+  // Manejador para procesar el pago y mostrar modal de éxito
   const handleConfirmarPedido = () => {
     vaciarCarrito();
     setIsConfirmPedidoOpen(false);
-    toggleCart(); // Cierra el drawer después de pagar
+    setIsSuccessModalOpen(true); // Abre el modal de éxito de la compra
   };
 
-  // Función de utilidad para formatear la moneda colombiana sin decimales extraños
+  // Manejador para cerrar todo después de ver la confirmación de pago
+  const handleCerrarExito = () => {
+    setIsSuccessModalOpen(false);
+    toggleCart(); // Cierra el drawer completo
+  };
+
+  // Función de utilidad para formatear la moneda colombiana
   const formatCOP = (valor) =>
     valor.toLocaleString("es-CO", {
       maximumFractionDigits: 0,
@@ -103,7 +110,6 @@ export default function CartDrawer() {
                       <h4 className="font-semibold text-slate-800 dark:text-slate-100 truncate text-sm">
                         {item.name}
                       </h4>
-                      {/* Muestra el total acumulado por ítem (Precio * Cantidad) */}
                       <p className="text-cyan-600 dark:text-cyan-400 font-bold text-sm">
                         ${formatCOP(item.precio * item.cantidad)}
                       </p>
@@ -163,7 +169,6 @@ export default function CartDrawer() {
                 </div>
 
                 <div className="flex gap-3 pt-2">
-                  {/* Botón para Abrir Modal de Vaciar */}
                   <button
                     type="button"
                     onClick={() => setIsConfirmVaciarOpen(true)}
@@ -172,7 +177,6 @@ export default function CartDrawer() {
                     Vaciar
                   </button>
 
-                  {/* Botón para Abrir Modal de Pagar con validación */}
                   <button
                     type="button"
                     onClick={handleAbrirModalPagar}
@@ -187,9 +191,7 @@ export default function CartDrawer() {
         </div>
       </div>
 
-      {/* ========================================== */}
-      {/* MODAL 1: CONFIRMAR VACIAR CARRITO           */}
-      {/* ========================================== */}
+      {/* MODAL 1: CONFIRMAR VACIAR CARRITO */}
       {isConfirmVaciarOpen && (
         <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-black/70 backdrop-blur-xs">
           <div className="relative w-full max-w-sm bg-white dark:bg-slate-900 rounded-3xl shadow-2xl p-6 text-center border border-slate-200 dark:border-slate-800">
@@ -223,9 +225,7 @@ export default function CartDrawer() {
         </div>
       )}
 
-      {/* ========================================== */}
-      {/* MODAL 2: CONFIRMAR PAGAR PEDIDO            */}
-      {/* ========================================== */}
+      {/* MODAL 2: CONFIRMAR PAGAR PEDIDO */}
       {isConfirmPedidoOpen && (
         <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-black/70 backdrop-blur-xs">
           <div className="relative w-full max-w-sm bg-white dark:bg-slate-900 rounded-3xl shadow-2xl p-6 text-center border border-slate-200 dark:border-slate-800">
@@ -255,6 +255,34 @@ export default function CartDrawer() {
                 Sí, pagar
               </button>
             </div>
+          </div>
+        </div>
+      )}
+
+      {/* MODAL 3: ÉXITO DE COMPRA REALIZADA */}
+      {isSuccessModalOpen && (
+        <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-black/70 backdrop-blur-xs">
+          <div className="relative w-full max-w-sm bg-white dark:bg-slate-900 rounded-3xl shadow-2xl p-6 text-center border border-slate-200 dark:border-slate-800">
+            <div className="w-16 h-16 bg-emerald-100 dark:bg-emerald-900/40 text-emerald-500 rounded-full flex items-center justify-center mx-auto mb-3">
+              <CheckCircle2 size={36} />
+            </div>
+            <h4 className="text-2xl font-bold text-slate-900 dark:text-white mb-2">
+              ¡Pago Exitoso!
+            </h4>
+            <p className="text-sm text-slate-600 dark:text-slate-300 mb-1 font-semibold">
+              ¡Gracias por tu compra, {usuario?.nombre}!
+            </p>
+            <p className="text-xs text-slate-400 mb-6">
+              Tu pedido ha sido procesado con éxito.
+            </p>
+
+            <button
+              type="button"
+              onClick={handleCerrarExito}
+              className="w-full py-3 bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-xl text-sm shadow-md cursor-pointer transition-all"
+            >
+              Aceptar
+            </button>
           </div>
         </div>
       )}

@@ -1,0 +1,55 @@
+/* Contenedor para centrar la tarjeta sin romper el layout general */
+.Miperfil-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+  padding: 20px;
+}
+
+.Miperfil {
+  width: 500px;
+  max-width: 90%;
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 40px;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.Miperfil:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+}
+
+.Miperfil h1 {
+  color: #2d3436;
+  margin-bottom: 20px;
+  font-size: 32px;
+}
+
+.perfil-imagen {
+  width: 250px;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 5px solid #a29bfe;
+  box-shadow: 0 5px 15px rgba(108, 92, 231, 0.4);
+  margin-bottom: 20px;
+  /* Transición suave para el efecto hover */
+  transition: transform 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+.perfil-imagen:hover {
+  transform: scale(1.1) rotate(5deg);
+  border-color: #ff6b81;
+  box-shadow: 0 10px 25px rgba(255, 107, 129, 0.5);
+  cursor: pointer;
+}
+
+.Miperfil p {
+  color: #636e72;
+  font-size: 20px;
+  line-height: 1.6;
+}

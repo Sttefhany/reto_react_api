@@ -2,6 +2,7 @@ import { useState } from "react";
 import { User, LogOut, X, LogIn, Mail, AlertTriangle } from "lucide-react";
 import { useAuth } from "./AuthContext";
 import { useCart } from "../context/CartContext";
+import mimagen from "../assets/calvin.webp";
 
 export default function Login() {
   const { usuario, login, logout } = useAuth();
@@ -50,7 +51,7 @@ export default function Login() {
           <span className="font-semibold">{usuario.nombre}</span>
         </button>
 
-        {/* Modal Perfil de Usuario */}
+        {/* Modal Perfil de Usuario (Sin redirección) */}
         {isProfileModalOpen && (
           <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs">
             <div className="relative w-full max-w-sm bg-white dark:bg-slate-900 rounded-3xl shadow-2xl p-6 text-slate-800 dark:text-white border border-slate-200 dark:border-slate-800">
@@ -63,9 +64,12 @@ export default function Login() {
               </button>
 
               <div className="flex flex-col items-center text-center my-4">
-                <div className="w-16 h-16 bg-blue-100 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400 rounded-full flex items-center justify-center mb-3">
-                  <User size={32} />
-                </div>
+                <img
+                  src={mimagen}
+                  alt={usuario.nombre}
+                  className="w-20 h-20 rounded-full object-cover border-4 border-indigo-400 shadow-md mb-3"
+                />
+
                 <h3 className="text-xl font-bold text-slate-900 dark:text-white">
                   {usuario.nombre}
                 </h3>
@@ -140,7 +144,6 @@ export default function Login() {
       {isLoginModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs">
           <div className="relative w-full max-w-md bg-white rounded-3xl shadow-2xl p-8 text-slate-800 border border-slate-100">
-            {/* Botón Cerrar X */}
             <button
               type="button"
               onClick={() => setIsLoginModalOpen(false)}
@@ -149,7 +152,6 @@ export default function Login() {
               <X size={18} />
             </button>
 
-            {/* Cabecera */}
             <div className="mb-6 text-left pr-8">
               <h3 className="text-2xl font-bold text-slate-900">
                 Iniciar Sesión
@@ -159,10 +161,7 @@ export default function Login() {
               </p>
             </div>
 
-            {/* Formulario */}
             <form onSubmit={handleLoginSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
-              
-              {/* Campo Nombre */}
               <div style={{ display: 'flex', flexDirection: 'column', textAlign: 'left', width: '100%' }}>
                 <label className="text-xs font-bold text-slate-700 mb-1.5 flex items-center gap-1.5">
                   <User size={15} className="text-blue-600" />
@@ -180,7 +179,6 @@ export default function Login() {
                 />
               </div>
 
-              {/* Campo Correo Obligatorio */}
               <div style={{ display: 'flex', flexDirection: 'column', textAlign: 'left', width: '100%' }}>
                 <label className="text-xs font-bold text-slate-700 mb-1.5 flex items-center gap-1.5">
                   <Mail size={15} className="text-blue-600" />
@@ -198,7 +196,6 @@ export default function Login() {
                 />
               </div>
 
-              {/* Botón Ingresar */}
               <button
                 type="submit"
                 style={{ width: '100%' }}
